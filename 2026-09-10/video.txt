@@ -1,0 +1,10 @@
+Philips Robertsi video selgitas visuaalselt ja lihtsalt, kuidas töötavad JavaScriptis sync ja async funktsioonid, kui JavaScript ise on single-threaded. Olin varem tuttav sellga, kuidas sünkroonsed ja asünkroonsed tegevused käituvad, kuid mul puudus ülevaade sellest, kuidas see süsteem sisemiselt töötab. Sain teada, et JavaScript ei käsitle kõiki asju üksi, vaid võtab appi erinevad Web API-d, millele delegeeritakse asünkroonselt töötavad funktsioonid. Lisaks ei teadnud ma varem, et isegi setTimeout(..., 0) puhul käsitletakse seda tegevust asünkroonselt.
+
+Shelley Vohri ettekanne selgitas põhjalikult, kuidas JavaScript on aastate jooksul käsitlenud asünkroonsust, alates vanematest callback funktsioonidest kuni tänapäevase async/await süntaksini. See video tõi sisse mitmeid termineid, mida ma varem ei teadnud, nagu näiteks generaatorid (generators) ja microtasks. Kuigi olin varem tuttav nende kasutamisega praktikas, sain nüüd palju parema arusaama sellest, kuidas need kapoti all reaalselt töötavad.
+
+Microtasks on oma eraldi järjekord, kui kasutada Promises, millele antakse sündmuste tsüklis prioriteet võrreldes task queue'ga (näiteks setTimeout).
+
+Generaatorid (generators) peatavad ja jätkavad funktsioone hiljem, mis on aluseks async/await-le.
+
+https://www.youtube.com/watch?v=a00NRSFgHsY&t=150s
+Vaatasin ise veel James Q Quicki video "5 JavaScript Concepts You HAVE TO KNOW", kus ta seletas 5 teemat, mida peaks igaüks teadma JavaScripti kohta. Equality, async js, error handling, ES6 syntax ja array methods - olid teemad, mida ta käsitles. Ta väitis, et kui need ära õppida, siis aitab see parem olla JavaScripti arendaja ning on võimalik kergemi arusaada ja lugeda teiste inimeste koodi. Isegi kui ma olin nendega juba tuttav, siis oli hea ülevaade ja meeldis, kuidas ta neid selgitas. Ta tõi sisse ka mõned head näited, mis aitasid mul paremini mõista, kuidas need teemad reaalselt töötavad. Eriti pani ta rõhku ES6 süntaksile, mis on kaasaegse JavaScripti osa ning seda kasutatakse isegi Reactis.
