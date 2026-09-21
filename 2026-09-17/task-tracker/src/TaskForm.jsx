@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
 
 export function TaskForm({ onAddTask }) {
   const [title, setTitle] = useState('');
@@ -8,10 +8,10 @@ export function TaskForm({ onAddTask }) {
   function handleSubmit(event) {
     // vältib lehe värskendamist, kui vorm esitatakse
     event.preventDefault();
-    
+
     // Eemaldame tühikud algusest ja lõpust
     const trimmedTitle = title.trim();
-    
+
     // Kui pealkiri on tühi või koosneb ainult tühikutest, näita veateadet
     if (!trimmedTitle) {
       setError(true);
@@ -40,7 +40,9 @@ export function TaskForm({ onAddTask }) {
         />
       </div>
 
-      {error && <p style={{ color: 'red' }}>Pealkiri ei tohi olla tühi ega koosneda ainult tühikutest!</p>}
+      {error && (
+        <p style={{ color: 'red' }}>Pealkiri ei tohi olla tühi ega koosneda ainult tühikutest!</p>
+      )}
 
       <button type="submit">Lisa ülesanne</button>
     </form>
