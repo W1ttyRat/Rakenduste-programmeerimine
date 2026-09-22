@@ -8,7 +8,7 @@ export function TaskCard({ task, onToggle, onDelete }) {
       <h2>
         <Link to={`/tasks/${task.id}`}>{task.title}</Link>
       </h2>
-      
+
       <p>{task.description}</p>
       <p>{statusText}</p>
 
@@ -17,3 +17,4 @@ export function TaskCard({ task, onToggle, onDelete }) {
     </article>
   );
 }
+  

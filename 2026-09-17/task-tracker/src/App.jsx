@@ -1,62 +1,38 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, Route, Routes, useParams } from 'react-router-dom';
 import Header from './Header.jsx';
+import { getTasks } from './services/taskApi.js';
 import { TaskCard } from './TaskCard.jsx';
 import { TaskForm } from './TaskForm.jsx';
 import './App.css';
 
 export default function App() {
   const [filter, setFilter] = useState('all');
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: 'Task 1',
-      description: 'React, Vite and Creating Your First Application',
-      completed: true,
-    },
-    {
-      id: 2,
-      title: 'Task 2',
-      description: 'Git Workflow, Commit Conventions and Prettier',
-      completed: true,
-    },
-    {
-      id: 3,
-      title: 'Task 3',
-      description: 'JSX, Components and Basic Styling',
-      completed: true,
-    },
-    {
-      id: 4,
-      title: 'Task 4',
-      description: 'Events, useState and Conditional Rendering',
-      completed: true,
-    },
-    {
-      id: 5,
-      title: 'Task 5',
-      description: 'Lists, Keys and Filtering',
-      completed: true,
-    },
-    {
-      id: 6,
-      title: 'Task 6',
-      description: 'Controlled Forms and Validation',
-      completed: false,
-    },
-    {
-      id: 7,
-      title: 'Task 7',
-      description: 'Shared State and Adding, Updating and Deleting Tasks',
-      completed: false,
-    },
-    {
-      id: 8,
-      title: 'Task 8',
-      description: 'React Router and Task Details',
-      completed: false,
-    },
-  ]);
+  const [tasks, setTasks] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    let isCurrent = true;
+
+    getTasks()
+      .then((loadedTasks) => {
+        if (!isCurrent) return;
+
+        setTasks(loadedTasks);
+        setIsLoading(false);
+      })
+      .catch(() => {
+        if (!isCurrent) return;
+
+        setError('Failed to load tasks.');
+        setIsLoading(false);
+      });
+
+    return () => {
+      isCurrent = false;
+    };
+  }, []);
 
   function toggleTask(id) {
     setTasks((currentTasks) =>
@@ -88,27 +64,33 @@ export default function App() {
     <div className="App">
       <Header />
 
-      <Routes>
-        <Route path="/" element={<HomePage />} />
+      {isLoading && <p>Loading tasks...</p>}
 
-        <Route
-          path="/tasks"
-          element={
-            <TaskListPage
-              tasks={tasks}
-              filter={filter}
-              setFilter={setFilter}
-              onAddTask={handleAddTask}
-              onToggle={toggleTask}
-              onDelete={deleteTask}
-            />
-          }
-        />
+      {error && <p>{error}</p>}
 
-        <Route path="/tasks/:taskId" element={<TaskDetailsPage tasks={tasks} />} />
+      {!isLoading && !error && (
+        <Routes>
+          <Route path="/" element={<HomePage />} />
 
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+          <Route
+            path="/tasks"
+            element={
+              <TaskListPage
+                tasks={tasks}
+                filter={filter}
+                setFilter={setFilter}
+                onAddTask={handleAddTask}
+                onToggle={toggleTask}
+                onDelete={deleteTask}
+              />
+            }
+          />
+
+          <Route path="/tasks/:taskId" element={<TaskDetailsPage tasks={tasks} />} />
+
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      )}
     </div>
   );
 }

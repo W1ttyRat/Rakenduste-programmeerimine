@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "title": "Task 1",
+    "description": "React, Vite and Creating Your First Application",
+    "completed": true
+  },
+  {
+    "id": 2,
+    "title": "Task 2",
+    "description": "Git Workflow, Commit Conventions and Prettier",
+    "completed": true
+  },
+  {
+    "id": 3,
+    "title": "Task 3",
+    "description": "JSX, Components and Basic Styling",
+    "completed": true
+  },
+  {
+    "id": 4,
+    "title": "Task 4",
+    "description": "Events, useState and Conditional Rendering",
+    "completed": true
+  },
+  {
+    "id": 5,
+    "title": "Task 5",
+    "description": "Lists, Keys and Filtering",
+    "completed": true
+  },
+  {
+    "id": 6,
+    "title": "Task 6",
+    "description": "Controlled Forms and Validation",
+    "completed": false
+  },
+  {
+    "id": 7,
+    "title": "Task 7",
+    "description": "Shared State and Adding, Updating and Deleting Tasks",
+    "completed": false
+  },
+  {
+    "id": 8,
+    "title": "Task 8",
+    "description": "React Router and Task Details",
+    "completed": false
+  },
+  {
+    "id": 9,
+    "title": "Task 9",
+    "description": "useEffect, Loading Data and an API Service",
+    "completed": false
+  },
+  {
+    "id": 10,
+    "title": "Task 10",
+    "description": "Production Builds and GitHub Pages Deployment",
+    "completed": false
+  },
+  {
+    "id": 11,
+    "title": "Task 11",
+    "description": "Reusable Layouts and the children Prop",
+    "completed": false
+  }
+]
