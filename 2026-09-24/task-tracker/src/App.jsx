@@ -20,6 +20,7 @@ export default function App() {
         if (!isCurrent) return;
 
         setTasks(loadedTasks);
+        setError('');
         setIsLoading(false);
       })
       .catch(() => {
@@ -49,8 +50,9 @@ export default function App() {
       const createdTask = await createTask(title);
 
       setTasks((currentTasks) => [...currentTasks, createdTask]);
+      setError('');
     } catch (err) {
-      console.error('Error creating task:', err);
+      setError(err.message);
     }
   }
 

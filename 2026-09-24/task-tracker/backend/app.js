@@ -1,5 +1,5 @@
 const express = require('express');
-//import cors from 'cors';
+const cors = require('cors');
 const dotenv = require('dotenv');
 const errorHandler = require('./middleware/error.middleware');
 
@@ -8,7 +8,7 @@ dotenv.config();
 
 const app = express();
 
-//app.use(cors());
+app.use(cors());
 app.use(express.json());
 
 const taskRoutes = require('./routes/task.route');
